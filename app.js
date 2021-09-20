@@ -1,5 +1,5 @@
 //Global to store players
-const players = [];
+let players = [];
 let player1Hand = [];
 let player2Hand = [];
 let player3Hand = [];
@@ -21,29 +21,28 @@ let gameDirection = 1;
 
 //Board
 //create the deck object array so it can be looped through
-const deck = [{
+const deck = [
+  {
     color: "Yellow",
     value: 1,
-    url: "uno_assets_2d/PNGs/small/yellow_1.png"
-},
-{
+    url: "uno_assets_2d/PNGs/small/yellow_1.png",
+  },
+  {
     color: "Red",
     value: 2,
-    url: "uno_assets_2d/PNGs/small/red_2.png"
-},
-{
+    url: "uno_assets_2d/PNGs/small/red_2.png",
+  },
+  {
     color: "Green",
     value: 3,
-    url: "uno_assets_2d/PNGs/small/green_3.png"
-},
-{
+    url: "uno_assets_2d/PNGs/small/green_3.png",
+  },
+  {
     color: "Blue",
     value: 4,
-    url: "uno_assets_2d/PNGs/small/blue_4.png"
-}
-]
-
-
+    url: "uno_assets_2d/PNGs/small/blue_4.png",
+  },
+];
 
 //function to draw cards to players
 const draw = () => {
@@ -61,18 +60,20 @@ const start = () => {
   $(".players").append($div);
   for (let i = 0; i < 5; i++) {
     let randomCard = Math.floor(Math.random() * deck.length);
-//to allow player1 cards to be clickable
-    $img = $("<img>").attr("src", `${deck[randomCard].url}`).on("click", (event)=> {
-        console.log(event);
-        event.currentTarget.classList.add("hi");
-        $(".hi").remove();
-        // console.log($('player1').attr(event.currentTarget));
-        // $(this).remove();
-    });
+    //to allow player1 cards to be clickable
+    //remove the card to push it to the discarded pile
+    $img = $("<img>")
+      .attr("src", `${deck[randomCard].url}`)
+      .on("click", (event) => {
+        console.log(event.target.src.split("/", 4));
+        event.currentTarget.classList.add("chosenCard");
+        $(".chosenCard").appendTo($(".playedCard")).removeClass("chosenCard");
+        // event.target.remove();
+      });
     player1Hand.push(deck[randomCard]); //because only this needs to be clicked so it needs to be outside
     console.log(deck[randomCard].url);
     $(".player1").append($img);
-  };
+  }
   $div = $("<div>").addClass("player2");
   $(".players").append($div);
   for (let i = 0; i < 5; i++) {
@@ -83,7 +84,7 @@ const start = () => {
     player2Hand.push(deck[randomCard]);
     console.log(deck[randomCard].url);
     $(".player2").append($img);
-  };
+  }
   $div = $("<div>").addClass("player3");
   $(".players").append($div);
   for (let i = 0; i < 5; i++) {
@@ -93,45 +94,39 @@ const start = () => {
     player3Hand.push(deck[randomCard]);
     console.log(deck[randomCard].url);
     $(".player3").append($img);
-  };
+  }
   $div = $("<div>").addClass("playedCard");
   $(".players").append($div);
-    let randomCard = Math.floor(Math.random() * deck.length);
+  let randomCard = Math.floor(Math.random() * deck.length);
 
-    $img = $("<img>").attr("src", `${deck[randomCard].url}`);
-    console.log(deck[randomCard].url);
-    $(".playedCard").append($img);
+  $img = $("<img>").attr("src", `${deck[randomCard].url}`);
+  console.log(deck[randomCard].url);
+  $(".playedCard").append($img);
 };
 
-//check if player hand 
+//check if player hand
 const checkForColor = (card, playerHand) => {
-    for (let i = 0; i < playerHand.length; i++) {
-        if (card.color === playerHand.color) {
-           // return colorCompared
-        }
+  for (let i = 0; i < playerHand.length; i++) {
+    if (card.color === playerHand.color) {
+      // return colorCompared
     }
-}
+  }
+};
 
 const checkForValue = (card, playerHand) => {
-    for (let i = 0; i <playerHand.length; i++) {
-        if (card.value === playerHand.value) {
-            //return valueCompared
-        }
+  for (let i = 0; i < playerHand.length; i++) {
+    if (card.value === playerHand.value) {
+      //return valueCompared
     }
-}
+  }
+};
+
+//auto-playing players
 
 
 
 
-//player turn
 
-//current card
-
-//event click handler to all player card elements
-
-//function that executes when card is clicked to be discarded/played
-
-//function to compare cards
 
 //declaring win/lose message
 const playerWinMessage = "You win!";
