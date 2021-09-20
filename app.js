@@ -62,6 +62,8 @@ const player1StartCards = 7;
 const player2StartCards = 7;
 const player3StartCards = 7;
 
+
+
 //event click handler to all player card elements
 
 
@@ -69,6 +71,7 @@ const player3StartCards = 7;
 
 
 //function to show card
+
 
 
 //function to compare cards
