@@ -1,7 +1,14 @@
-html, body {
-    margin: 0;
-    padding: 0;
-    background: url();
+body {
+    background: url(uno_assets_2d/background.jfif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 #restart {
@@ -10,6 +17,46 @@ html, body {
 
 .players {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: column-reverse;
+    position: relative;
+    transform: rotateX(10deg);
 }
+
+.player2 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 12%;
+    transform: rotate(90deg);
+}
+
+
+.player3 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-left: 50px;
+    width: 12%;
+}
+
+.player1 {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-left: 50px;
+    width: 10%;
+    top: 50%;
+}
+
+.cardPlayed {
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 50%;
+    top: 50%;
+}
+
+img {
+    width: 80px;
+}
+
