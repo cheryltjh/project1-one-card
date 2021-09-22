@@ -16,7 +16,7 @@ let deck = [];
 let amtPlayers = 3;
 
 //starting amount of cards
-let initialCards = 7;
+let initialCards = 5;
 
 //turn tracker
 let gameTurn = 0;
@@ -353,8 +353,9 @@ const originalDeck = [
   //remember to add in other special cards after designing them
 ];
 
-////////////////////// * Functions !! ////////////////////
+////////////////////// * Draw & Shuffle card Function ////////////////////
 //function for players to draw cards
+//!TO DO - put DECK image for the draw function
 const draw = (num) => {
   //tempPlayer is used to know which player I want to append the cards to
   let tempPlayer = currentPlayer;
@@ -423,7 +424,7 @@ const start = () => {
 
   $div = $("<div>").addClass("player1");
   $(".players").append($div);
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
     //to draw the card and remove card from the deck
     let randomCard = deck.pop();
     //also make image tag with attribute source and source value = pic of randomcard drawn
@@ -440,9 +441,10 @@ const start = () => {
   }
   
   //adding player2 cards
+  //! TODO: change the face up cards to face down cards for player 2&3 when I'm done with the logic
   $div = $("<div>").addClass("player2");
   $(".players").append($div);
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
 
     let randomCard = deck.pop();
     $img = $("<img>")
@@ -459,7 +461,7 @@ const start = () => {
   //adding player3 cards
   $div = $("<div>").addClass("player3");
   $(".players").append($div);
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 5; i++) {
     let randomCard = deck.pop();
     $img = $("<img>")
       .attr("src", randomCard.url)
@@ -485,6 +487,7 @@ const start = () => {
   //
 };
 
+//////////* Restart button function! ////////////
 const restart = () => {
   $(".cardPlayed").remove();
   $(".player1").remove();
@@ -521,8 +524,10 @@ const checkForValue = (value, playerHand) => {
   return -1;
 };
 
+
 //Building the direction for the 2 players and also for reverse card
 //Turn function is built on currentPlayer
+//!TODO: INCLUDE UI/TEXT TO SEE WHOSE TURN IS NEXT
 const nextPlayer = () => {
   console.log("number of cards left: " + deck.length);
   if (gameDirection === 1) {
@@ -595,7 +600,7 @@ const nextPlayer = () => {
   }
 };
 
-//clickEventHandler is created for player1Hand, 2 places uses this
+//clickEventHandler is created for player1Hand
 const clickEventHandler = (event) => {
   //the if function puts a check so it wont play what it shouldnt play
   //add the condition to find out if the color of the chosenCard is the same as the color of the cardPlayed or the value of the chosenCard is the same value as the cardPlayed
@@ -639,6 +644,7 @@ const clickEventHandler = (event) => {
   }
 }
 
+//////////* Reverse Function ///////////
 const reverse = () => {
   console.log("reverse liao");
   if (gameDirection === 1) {
@@ -651,8 +657,12 @@ const reverse = () => {
   }
 }
 
+//! TODO: SKIP FUNCTION (IF POSSIBLE)
+//! TODO: EXTRA CARD REMOVAL FUNCTION (IF POSSIBLE)
+//! TODO: WILD CARD FUNCTION (IF POSSIBLE)
+//! TODO: SAYING ITS THE LAST CARD FUNCTION
 
-
+//? TODO: UI - starting page, hide buttons
 
 
 
