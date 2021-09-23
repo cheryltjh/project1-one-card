@@ -24,8 +24,8 @@ body {
     flex-direction: row;
     position: relative;
     width: 12%;
-    top: -130px;
-    left: -100px;
+    top: -230px;
+    left: -110px;
     transform: rotate(90deg);
 }
 
@@ -34,8 +34,8 @@ body {
     display: flex;
     flex-direction: row;
     position: relative;
-    margin-left: 50px;
-    top: -120px;
+    margin-left: 20px;
+    top: -235px;
     width: 12%;
 }
 
@@ -43,9 +43,10 @@ body {
     display: flex;
     flex-direction: row;
     position: relative;
-    margin-left: 50px;
+    margin-left: 0px;
     width: 10%;
-    top: 200px;
+    top: 165px;
+    cursor: pointer;
 }
 
 .cardPlayed {
@@ -53,7 +54,7 @@ body {
     flex-direction: row;
     position: relative;
     margin-left: 320px;
-    top: 250px;
+    top: 172px;
 }
 
 img {
@@ -61,28 +62,133 @@ img {
     height: 100px;
 }
 
-button {
+/* button {
     cursor: pointer;
     border-radius: 0.4rem;
     text-transform: uppercase;
     justify-content: center;
-}
+} */
 
 #start {
-    padding: 1rem;
+    padding: 3rem;
     font-size: 1.5rem;
+    position: absolute;
+    background: url(uno_assets_2d/gameplay\ area.gif);
+    color:white;
+    border-color: darkgray;
+    cursor: pointer;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    justify-content: center;
 }
 
 #restart {
     padding: 0.5rem;
     font-size: 1rem;
+    margin-top: -560px;
+    margin-left: 950px;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    text-transform: uppercase;
+    justify-content: center;
+    border-color: #fff300;
+    color: white;
+    background-color: black;
 
 }
 
 #draw {
-    height: 3rem;
-    width: 7rem;
+    height: 2rem;
+    width: 10rem;
     padding: 0.2rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
     justify-content: center;
+    position: relative;
+    margin-left: 120px;
+    top: -280px;
+    cursor: pointer;
+    border-radius: 0.4rem;
+    text-transform: uppercase;
+    justify-content: center;
+    border-color: #ff6700;
+    color: white;
+    background-color: black;
+}
+
+#player1Text {
+    height: 2rem;
+    width: 10rem;
+    padding: 0.2rem;
+    font-size: 0.9rem;
+    justify-content: center;
+    position: absolute;
+    cursor: default;
+    margin-left: 175px;
+    top: 420px;
+    font-size: 1rem;
+    border-color: #b026ff;
+    background-color: black;
+    color: white;
+}
+
+#player2Text {
+    height: 2rem;
+    width: 10rem;
+    padding: 0.2rem;
+    font-size: 0.9rem;
+    justify-content: center;
+    position: absolute;
+    cursor: default;
+    margin-left: -80px;
+    font-size: 1rem;
+    border-color: #ff6ec7;
+    background-color: black;
+    color: white;
+    top: 200px;
+    transform: rotate(90deg);
+}
+
+#player3Text {
+    height: 2rem;
+    width: 10rem;
+    padding: 0.2rem;
+    font-size: 0.9rem;
+    justify-content: center;
+    position: absolute;
+    cursor: default;
+    margin-left: 175px;
+    top: -20px;
+    font-size: 1rem;
+    border-color: #04d9ff;
+    background-color: black;
+    color: white;
+}
+
+#back {
+    position: relative;
+    top: -260px;
+}
+
+#instruction {
+    width: auto;
+    height: 430px;
+    left: 570px;
+    margin-top: 10px;
+    margin-left: 950px;
+}
+
+.gameArea {
+    background: url(uno_assets_2d/gameplay\ area.gif);
+    margin-top: 180px;
+    width: 500px;
+    margin-right: -100px;
+    border-radius: 3rem;
+}
+
+#current-player {
+    color: white;
+}
+
+#display-row {
+    color: white;
 }

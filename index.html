@@ -13,21 +13,26 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <div id="startScreen">
+    <button id="start" onclick="start()"><b>Start!</b></button>
+    </div>
+
+    <div class="gameArea">
     <div class ="players">
+        <button hidden id="draw" onclick="draw(1)">Click me to draw!</button>
+        <button hidden id="player1Text"><b>You</b></button>
+        <button hidden id="player2Text"><b>Player 2</b></button>
+        <button hidden id="player3Text"><b>Player 3</b></button>
+    </div>
     </div>
 
-    <div class="deck">
-        <div class="drawPile">
-        </div>
-        <div class="discardPile">
-        </div>
+    <div class = "card">
+        <img src="uno_assets_2d/PNGs/small/card_back_alt.png" hidden id="back">
     </div>
-
 
     <div class="game-options">
-        <button id="start" onclick="start()">Start!</button>
-        <button id="draw" onclick="draw(1)">Draw!</button>
-        <button id="restart" onclick="restart()">Restart</button>
+        <button hidden id="restart" onclick="restart()">Restart</button>
+        <img src="uno_assets_2d/instructions.gif" hidden id="instruction"/>
     </div>
 
 

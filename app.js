@@ -98,12 +98,12 @@ const originalDeck = [
     value: 11,
     url: "uno_assets_2d/PNGs/small/blue_reverse.png",
   },
-  // {
-  //   id: "b12",
-  //   color: "Blue",
-  //   value: 12,
-  //   url: "uno_assets_2d/PNGs/small/blue_skip.png",
-  // },
+  {
+    id: "b12",
+    color: "Blue",
+    value: 12,
+    url: "uno_assets_2d/PNGs/small/blue_skip.png",
+  },
   {
     id: "g0",
     color: "Green",
@@ -176,12 +176,12 @@ const originalDeck = [
     value: 11,
     url: "uno_assets_2d/PNGs/small/green_reverse.png",
   },
-  // {
-  //   id: "g12",
-  //   color: "Green",
-  //   value: 12,
-  //   url: "uno_assets_2d/PNGs/small/green_skip.png",
-  // },
+  {
+    id: "g12",
+    color: "Green",
+    value: 12,
+    url: "uno_assets_2d/PNGs/small/green_skip.png",
+  },
   {
     id: "r0",
     color: "Red",
@@ -254,12 +254,12 @@ const originalDeck = [
     value: 11,
     url: "uno_assets_2d/PNGs/small/red_reverse.png",
   },
-  // {
-  //   id: "r12",
-  //   color: "Red",
-  //   value: 12,
-  //   url: "uno_assets_2d/PNGs/small/red_skip.png",
-  // },
+  {
+    id: "r12",
+    color: "Red",
+    value: 12,
+    url: "uno_assets_2d/PNGs/small/red_skip.png",
+  },
   {
     id: "y0",
     color: "Yellow",
@@ -332,12 +332,12 @@ const originalDeck = [
     value: 11,
     url: "uno_assets_2d/PNGs/small/yellow_reverse.png",
   },
-  // {
-  //   id: "y12",
-  //   color: "Yellow",
-  //   value: 12,
-  //   url: "uno_assets_2d/PNGs/small/yellow_skip.png",
-  // },
+  {
+    id: "y12",
+    color: "Yellow",
+    value: 12,
+    url: "uno_assets_2d/PNGs/small/yellow_skip.png",
+  },
   // {
   //   id: "wild1",
   //   color: "RGBY",
@@ -355,7 +355,7 @@ const originalDeck = [
 
 ////////////////////// * Draw & Shuffle card Function ////////////////////
 //function for players to draw cards
-//!TO DO - put DECK image for the draw function
+//Can change the gameDirection === 1 to const FORWARD = 1, gameDirection === FORWARD
 const draw = (num) => {
   //tempPlayer is used to know which player I want to append the cards to
   let tempPlayer = currentPlayer;
@@ -384,7 +384,8 @@ const draw = (num) => {
           .on("click" , clickEventHandler //this is an event handler function
     );
         } else {
-        $img1 = $("<img>").attr("src", randomCard.url)
+        $img1 = $("<img>")
+        .attr("src", "uno_assets_2d/PNGs/small/card_back_alt.png")
         .attr("color", randomCard.color)
         .attr("value", randomCard.value)
         .attr("cardId", randomCard.id)
@@ -392,11 +393,11 @@ const draw = (num) => {
     $(playerTag[tempPlayer]).append($img1); 
     players[tempPlayer].push(randomCard);
       }
-  setTimeout(nextPlayer,  2000);
+  setTimeout(nextPlayer,  1500);
 };
 
 //initialising a helper function
-const shuffle = (array) => {
+const shuffle = (array) => { //url
   let currentIndex = array.length,  randomIndex;
 
   // While there remain elements to shuffle...
@@ -414,11 +415,18 @@ const shuffle = (array) => {
   return array;
 }
 
-////////* start game with 3 players and their random cards! //////////
+//////////////////* start game with 3 players and their random cards! ///////////////
 
 //function for player1 = me
 const start = () => {
-  console.log("start");
+  $("#player1Text").show();
+  $("#player2Text").show();
+  $("#player3Text").show();
+  $("#instruction").show();
+  $("#back").show();
+  $("#draw").show();
+  $("#restart").show();
+  $("#start").hide();
   deck = originalDeck.slice(0);
   shuffle(deck);
 
@@ -429,6 +437,7 @@ const start = () => {
     let randomCard = deck.pop();
     //also make image tag with attribute source and source value = pic of randomcard drawn
     //attr is just the variable/value and to identify the card
+    //Can put this in a function in the future as this keeps repeating
     $img = $("<img>")
       .attr("src", randomCard.url)
       .attr("color", randomCard.color)
@@ -448,7 +457,7 @@ const start = () => {
 
     let randomCard = deck.pop();
     $img = $("<img>")
-      .attr("src", randomCard.url)
+      .attr("src", "uno_assets_2d/PNGs/small/card_back_alt.png")
       .attr("color", randomCard.color)
       .attr("value", randomCard.value)
       .attr("cardId", randomCard.id);
@@ -464,7 +473,7 @@ const start = () => {
   for (let i = 0; i < 5; i++) {
     let randomCard = deck.pop();
     $img = $("<img>")
-      .attr("src", randomCard.url)
+      .attr("src", "uno_assets_2d/PNGs/small/card_back_alt.png")
       .attr("color", randomCard.color)
       .attr("value", randomCard.value)
       .attr("cardId", randomCard.id);
@@ -484,11 +493,17 @@ const start = () => {
     .attr("cardId", randomCard.id);
   cardPlayed.push(randomCard);
   $(".cardPlayed").append($img);
-  //
-};
+  console.log("Start");
+}
 
-//////////* Restart button function! ////////////
+
+//////////////////////* Restart button function! ////////////////
 const restart = () => {
+  $("#instruction").hide();
+  $("#back").hide();
+  $("#draw").hide();
+  $("#player2Text").hide();
+  $("#player3Text").hide();
   $(".cardPlayed").remove();
   $(".player1").remove();
   $(".player2").remove();
@@ -499,11 +514,12 @@ const restart = () => {
   player3Hand.splice(0, player3Hand.length);
   currentPlayer = 0;
   cardPlayed.splice(0, cardPlayed.length);
-  setTimeout(start,  2000); 
+  gameDirection = 1;
+  setTimeout(start,  500); 
 }
 
 
-////////////* Check function! ////////////////
+////////////////////////* Check function! ////////////////////////
 
 //function to check against playerHands and color/value
 const checkForColor = (color, playerHand) => {
@@ -524,12 +540,12 @@ const checkForValue = (value, playerHand) => {
   return -1;
 };
 
+////////////////////////* Game Turn (Direction) /////////////////////
 
 //Building the direction for the 2 players and also for reverse card
 //Turn function is built on currentPlayer
-//!TODO: INCLUDE UI/TEXT TO SEE WHOSE TURN IS NEXT
 const nextPlayer = () => {
-  console.log("number of cards left: " + deck.length);
+  console.log("Number of cards left in deck: " + deck.length);
   if (gameDirection === 1) {
     currentPlayer += 1;
     if (currentPlayer > 2) { //because there's only 3 players so the loop wont go on forever
@@ -541,8 +557,9 @@ const nextPlayer = () => {
       currentPlayer = 2;
     }
   }
+  turnIdentifier();
   if (currentPlayer === 0) {
-    console.log("my turn la")
+    console.log("my turn");
     return; 
   }
 
@@ -582,18 +599,21 @@ const nextPlayer = () => {
       $(".cardPlayed").append($img1); 
 
      //delete the chosenCard from playerHand
-    players[currentPlayer].splice([chosenCard], 1);
-    console.log("hi")
+    players[currentPlayer].splice(chosenCard, 1);
+    // console.log("hi")
+    //card.value is the value of the cards in the deck
     if (players[currentPlayer].length === 0) {
       setTimeout(() => {alert ("Player "+ (currentPlayer +1) + " WON!")},  1000); 
-      // alert ("Player "+ (currentPlayer +1) + " WON!");
     } else {
       if (card.value === 11) {
         reverse();
       } else if (card.value === 10){
         draw(2);
+      } else if (card.value === 12) {
+        skip();
       }
       if (card.value !== 10) {
+      // setTimeout(lastCard(players[currentPlayer]), 1000);
       setTimeout(nextPlayer,  2000);
       }
     }
@@ -632,37 +652,83 @@ const clickEventHandler = (event) => {
         setTimeout(() => {alert ("You WON!")},  1000);
       } else {
         if (tempValue === 11) {
-          console.log("reversing for me ah");
+          console.log("Reversing for you ah");
           reverse();
         } else if (tempValue === 10){
           draw(2);
+        } else if (tempValue === 12) {
+          skip();
         }
         if (tempValue !== 10) {
-        setTimeout(nextPlayer,  2000);
+        // setTimeout(lastCard(player1Hand), 1000);
+        setTimeout(nextPlayer,  1500);
         }
       }
   }
 }
 
-//////////* Reverse Function ///////////
+////////////////////////* Reverse Function //////////////////////
 const reverse = () => {
-  console.log("reverse liao");
+  console.log("Reverse liao");
   if (gameDirection === 1) {
-    console.log("forward")
+    console.log("Continue")
     gameDirection = -1;
     //else if is to write condition
   } else if (gameDirection === -1) {
-    console.log("backwards")
+    console.log("The other way!")
     gameDirection = 1;
   }
 }
 
-//! TODO: SKIP FUNCTION (IF POSSIBLE)
+//////////////////* Skip Function ///////////////////
+const skip = () => {
+console.log("skipping a turn");
+if (gameDirection === 1) {
+  currentPlayer += 1;
+  if (currentPlayer > 2) { //because there's only 3 players so the loop wont go on forever
+    currentPlayer = 0; //goes back to me so it can reset to the origin
+  }
+} else if (gameDirection === -1) { //reverse the direction (for reverse card also)
+  currentPlayer -= 1;
+  if (currentPlayer < 0) {
+    currentPlayer = 2;
+  }
+}
+}
+
+
+//////////////* identifying whose turn is it ///////////
+const turnIdentifier = () => {
+  if (currentPlayer === 0) {
+      $('#player1Text').css('color','red');
+      $('#player2Text').css('color','white');
+      $('#player3Text').css('color', 'white');
+  } else if (currentPlayer === 1) {
+      $('#player1Text').css('color','white');
+      $('#player2Text').css('color','red');
+      $('#player3Text').css('color', 'white');
+  } else if (currentPlayer === 2) {
+    $('#player1Text').css('color','white');
+      $('#player2Text').css('color','white');
+      $('#player3Text').css('color', 'red');
+  }
+}
+
+
+//////////////////////* Last card function ////////////////////
+// const lastCard = (playerHand) => {
+//   if (player1Hand.length === 1) {
+//     alert("Player "+ (currentPlayer + 1) + "last card");
+//   }
+// }
+
+
+
+
 //! TODO: EXTRA CARD REMOVAL FUNCTION (IF POSSIBLE)
 //! TODO: WILD CARD FUNCTION (IF POSSIBLE)
-//! TODO: SAYING ITS THE LAST CARD FUNCTION
 
-//? TODO: UI - starting page, hide buttons
+
 
 
 
