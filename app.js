@@ -338,18 +338,6 @@ const originalDeck = [
     value: 12,
     url: "uno_assets_2d/PNGs/small/yellow_skip.png",
   },
-  // {
-  //   id: "wild1",
-  //   color: "RGBY",
-  //   value: 13,
-  //   url: "uno_assets_2d/PNGs/small/wild_color_changer.png",
-  // },
-  // {
-  //   id: "wild4",
-  //   color: "RGBY",
-  //   value: 14,
-  //   url: "uno_assets_2d/PNGs/small/wild_pick_four.png",
-  // },
   //remember to add in other special cards after designing them
 ];
 
@@ -614,7 +602,7 @@ const nextPlayer = () => {
       }
       if (card.value !== 10) {
       // setTimeout(lastCard(players[currentPlayer]), 1000);
-      setTimeout(nextPlayer,  2000);
+      setTimeout(nextPlayer,  1500);
       }
     }
   }
